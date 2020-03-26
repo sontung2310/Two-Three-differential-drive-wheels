@@ -1,0 +1,30 @@
+%Kcach 2 banh(m)
+l = 0.2;
+%duong kinh tam quay cung tron
+d = 0.5;
+
+%ban kinh banh xe
+r = 0.2;
+dt = 0.01;
+
+x = [0];
+y = [0];
+theta = [-pi/3];
+solanlap = [63];
+Vr = [3,];
+Vl = [2];
+j = 1;
+for i = 1:length(Vr)
+    v = (Vl(i)+Vr(i))/2;
+    w = (Vr(i)-Vl(i))/l;
+    for k = 1:solanlap(i)
+    new_theta = theta(j) + w*dt;
+    new_x = x(j) + v*dt*cos((new_theta + theta(j))/2);
+    new_y = y(j) + v*dt*sin((new_theta + theta(j))/2);
+    j=j+1;
+    x = [x new_x];
+    y = [y new_y];
+    theta = [theta new_theta];
+    end
+end
+plot(x,y,'-o')
